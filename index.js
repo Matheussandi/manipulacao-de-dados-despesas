@@ -81,7 +81,7 @@ app.get('/despesas/gastoResponsavel/:responsavel', (req, res) => {
                     
     return res
             .status(200)
-            .json({"gasto total do responsável": respon})
+            .json(respon)
 })
 
 app.listen(3333, () => {
