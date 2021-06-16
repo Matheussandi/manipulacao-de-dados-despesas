@@ -28,7 +28,8 @@ const verificaId = (req, res, next) => {
 }
 
 let produtos = [
-    {id: uuid.v4(), dataCompra:'15/06/2021', localCompra:'Supermercado', valor:1000.00, responsavel:'Maria'}
+    {id: uuid.v4(), dataCompra:'15/06/2021', localCompra:'Supermercado', valor:1000.00, responsavel:'Maria'},
+    {id: uuid.v4(), dataCompra:'15/06/2021', localCompra:'Americanas', valor:2000.00, responsavel:'Marcos'}
 ]
 
 // Incluir - letra A
