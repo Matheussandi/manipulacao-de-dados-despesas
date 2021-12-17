@@ -27,12 +27,9 @@ const verificaId = (req, res, next) => {
     return next()
 }
 
-let produtos = [
-    {id: uuid.v4(), dataCompra:'15/06/2021', localCompra:'Supermercado', valor:1000.00, responsavel:'Maria'},
-    {id: uuid.v4(), dataCompra:'15/06/2021', localCompra:'Americanas', valor:2000.00, responsavel:'Marcos'}
-]
+let produtos = []
 
-// Incluir - letra A
+// Incluir
 app.post('/despesas', verificaProduto, (req, res) => {
     const { dataCompra, localCompra, valor, responsavel } = req.body
     const incluiProduto = {
@@ -48,14 +45,14 @@ app.post('/despesas', verificaProduto, (req, res) => {
             .json(produtos)
 })
 
-// Listar - letra B
+// Listar
 app.get('/despesas', (req, res) => {
     return res
             .status(200)
             .json(produtos) 
 })
 
-// Retornar gasto total - letra D   ARRUMAR
+// Retornar gasto total de todos
 app.get('/despesas/gastoTotal', (req, res) => {
     const total = produtos
                     .reduce((a, b) => a += b.valor, 0)
@@ -64,18 +61,7 @@ app.get('/despesas/gastoTotal', (req, res) => {
             .json({"gasto total": total})
 })
 
-// Retornar gasto dos responsáveis
-app.get('/despesas/gastoResponsavel', (req, res) => {
-    const { responsavel } = req.query
-    const respon = produtos
-                    .filter((rep) => rep.responsavel === responsavel)
-                    
-    return res
-            .status(200)
-            .json(respon)
-})
-
-// Listar pelo id - letra C
+// Listar pelo id
 app.get('/despesas/:id', verificaId, (req, res) => {
     const { id } = req.params
     const idFilter = produtos.filter(prod => prod.id === id)
